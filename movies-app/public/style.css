@@ -18,6 +18,10 @@ body {
     max-width: 1200px;
     width: 100%;
 }
+.movies-editor {
+    padding: 30px 0;
+    background-color: #f7f9f8;
+}
 .grid_container {
     width: 100%;
     display: flex;
@@ -37,10 +41,15 @@ body {
     width: 100%;
     object-fit: cover;
 }
+.search-block {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 .input-wrapper .search {
     height: 48px;
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     border: 1px solid #CCC;
     -webkit-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
     -moz-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
@@ -54,12 +63,19 @@ body {
     display: block;
     margin: 0 auto;
 }
+.search-block .input-wrapper {
+    width: 100%;
+}
 .search-block .input-wrapper,
 .search-block .radio-block {
     padding: 5px;
+    font: 14px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+    color: #585858;
 }
 .radio-block {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
 }
 
