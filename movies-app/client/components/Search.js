@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import api from '../api/api';
 
-class MoviesEditor extends React.Component {
+class Search extends React.Component {
     constructor(props) {
         super(props);
         this.searchByName = this.searchByName.bind(this);
@@ -11,15 +11,10 @@ class MoviesEditor extends React.Component {
         this.changeSearchCategory = this.changeSearchCategory.bind(this);
     }
 
-    // searchMovies(e) {
-    //     let value = {title: e.target.value};
-    //     console.log(value)
-    //     api.searchByName(value).then(({ data }) => this.props.searchMoviesByTitle(data));
-    // }
     searchByName(e) {
-        // console.log('test', api.searchByName(e.target.value).then(({ data }) => data));
         api.searchByName(e.target.value).then(({ data }) => this.props.getMovie(data));
     }
+
     searchByActor(e) {
         api.searchByStar(e.target.value).then(({ data }) => this.props.getMovie(data));
     }
@@ -79,4 +74,4 @@ export default connect(
             dispatch({ type: "CHANGE_SEARCH", value});
         }
     })
-)(MoviesEditor);
+)(Search);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import MoviesEditor from './MoviesEditor';
+import Search from './Search';
 import MoviesGrid from './MoviesGrid';
 
 import api from '../api/api';
@@ -18,7 +18,7 @@ class App extends React.Component {
         return (
             <div className='App'>
                 <h2 className='App_header'>Movies List</h2>
-                <MoviesEditor onMovieAdd='' />
+                <Search />
                 <MoviesGrid />
             </div>
         );
