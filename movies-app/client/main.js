@@ -8,22 +8,8 @@ import thunk from 'redux-thunk';
 
 
 import App from './components/App';
-import api from './api/api';
 
 
-// function moviesList (state = [], action) {
-//     if (action.type === "ADD_MOVIE") {
-//         return [
-//             ...state,
-//             action.movies
-//         ];
-//     } else if (action.type === "GET_LIST") {
-//         return action.movies;
-//     } else if (action.type === "SEARCH_MOVIES") {
-//         return action.movies;
-//     }
-//     return state;
-// }
 const initialState = {
     searchBy: 'name',
     moviesList: []
@@ -49,7 +35,12 @@ function moviesList (state = initialState, action) {
         return {
             ...state,
             searchBy: action.value
-        }
+        };
+    } else if (action.type === "DELETE_MOVIE") {
+        return {
+            ...state,
+            moviesList: action.movies
+        };
     }
     return state;
 }
