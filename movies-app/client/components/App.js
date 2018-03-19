@@ -3,21 +3,19 @@ import { connect } from 'react-redux';
 
 import Search from './Search';
 import MoviesGrid from './MoviesGrid';
+import AddMovie from './AddMovie';
 
-import api from '../api/api';
 
 class App extends React.Component {
     constructor(props) {
         super(props)
     }
-    // componentWillMount() {
-    //     api.listMovies().then(({ data }) => this.props.getMovies(data));
-    // }
+
     render() {
-        let movies = this.props.testStore[0];
         return (
             <div className='App'>
                 <h2 className='App_header'>Movies List</h2>
+                <AddMovie />
                 <Search />
                 <MoviesGrid />
             </div>
@@ -25,13 +23,4 @@ class App extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        testStore: state
-    }),
-    dispatch => ({
-        getMovies: (movies) => {
-            dispatch({ type: "GET_LIST", movies: movies});
-        }
-    })
-)(App);
+export default App;

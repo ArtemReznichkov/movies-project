@@ -12,7 +12,8 @@ import App from './components/App';
 
 const initialState = {
     searchBy: 'name',
-    moviesList: []
+    moviesList: [],
+    actorsList: []
 };
 
 function moviesList (state = initialState, action) {
@@ -41,6 +42,19 @@ function moviesList (state = initialState, action) {
             ...state,
             moviesList: action.movies
         };
+    } else if (action.type === "ADD_ACTOR") {
+        return {
+            ...state,
+            actorsList: [...state.actorsList, action.actor]
+        }
+    } else if (action.type === "DELETE_ACTOR") {
+        return {
+            ...state,
+            actorsList: [
+                ...state.actorsList.slice(0, action.index),
+                ...state.actorsList.slice(action.index + 1)
+            ]
+        }
     }
     return state;
 }

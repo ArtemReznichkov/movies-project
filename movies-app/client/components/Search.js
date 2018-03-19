@@ -22,6 +22,7 @@ class Search extends React.Component {
     changeSearchCategory(e) {
         this.props.changeSearchBy(e.target.value);
     }
+
     render() {
         return (
             <div className="movies-editor">
