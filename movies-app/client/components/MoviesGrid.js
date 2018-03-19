@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
+import Movie from './Movie';
 import api from '../api/api';
 
 class MoviesGrid extends React.Component {
@@ -8,26 +10,25 @@ class MoviesGrid extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         api.listMovies().then(({ data }) => this.props.getMovies(data));
     }
 
     render() {
         return (
-            <ul>
+            <div className="grid_container">
                 {this.props.testStore.map((movie, index) =>{
-                    console.log(movie);
-                    return <li key={index}>{movie.format}</li>
+                    return <Movie key ={index} index={index} movie ={movie}/>
                 }
                 )}
-            </ul>
+            </div>
         );
     }
 }
 
 export default connect(
     state => ({
-        testStore: state
+        testStore: state.moviesList
     }),
     dispatch => ({
         getMovies: (movies) => {

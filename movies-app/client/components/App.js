@@ -17,7 +17,7 @@ class App extends React.Component {
         let movies = this.props.testStore[0];
         return (
             <div className='App'>
-                <h2 className='App_header'>MoviesApp</h2>
+                <h2 className='App_header'>Movies List</h2>
                 <MoviesEditor onMovieAdd='' />
                 <MoviesGrid />
             </div>

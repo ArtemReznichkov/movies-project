@@ -30,12 +30,12 @@ app.delete('/movies/:id', (req, res) => {
 });
 
 //Search movies by name
-app.get('/getMovies_byName', (req, res) => {
+app.post('/getMovies_byName', (req, res) => {
     db.searchMovieByName(req.body.title).then(data => res.send(data));
 });
 
 //Search movies by star
-app.get('/getMovies_byStar', (req, res) => {
+app.post('/getMovies_byStar', (req, res) => {
     db.searchMovieByStar(req.body.star).then(data => res.send(data));
 });
 

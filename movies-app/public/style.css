@@ -4,6 +4,62 @@
 
 body {
     font-family: sans-serif;
-    background-color: azure;
+}
+#mount-point {
+    display: flex;
+    justify-content: center;
+}
+
+.App_header {
+    text-align: center;
+}
+
+.App {
+    max-width: 1200px;
+    width: 100%;
+}
+.grid_container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 5px;
+    margin-top: 30px;
+}
+.movie-element {
+    width: 25%;
+    padding: 10px;
+}
+.movie-element:hover {
+    box-shadow: 0px 3px 5.64px 0.36px rgba(5, 5, 5, 0.3);
+}
+.movie-element img {
+    width: 100%;
+    object-fit: cover;
+}
+.input-wrapper .search {
+    height: 48px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #CCC;
+    -webkit-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+    -moz-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+    box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #999;
+    font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+    padding: 10px;
+    display: block;
+    margin: 0 auto;
+}
+.search-block .input-wrapper,
+.search-block .radio-block {
+    padding: 5px;
+}
+.radio-block {
+    display: flex;
+    justify-content: center;
 }
 
