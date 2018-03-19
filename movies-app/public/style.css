@@ -40,6 +40,7 @@ button:hover {
     width: 200px;
     margin: 0 auto;
     display: block;
+    margin-top: 20px;
 }
 .add-movie-btn:hover {
     background-color: #fe3f00;
