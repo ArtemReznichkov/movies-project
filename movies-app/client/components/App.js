@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Search from './Search';
 import MoviesGrid from './MoviesGrid';
 import AddMovie from './AddMovie';
+import Popup from './Popup';
 
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
                 <AddMovie />
                 <Search />
                 <MoviesGrid />
+                <Popup />
             </div>
         );
     }

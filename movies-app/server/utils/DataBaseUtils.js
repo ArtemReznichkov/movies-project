@@ -14,6 +14,10 @@ export function listMovies() {
     return Movie.find().sort({ title: 'asc' });
 }
 
+export function getOneMovie(id) {
+    return Movie.findById(id);
+}
+
 export function createMovie(data) {
     const movie = new Movie({
         title: data.title,

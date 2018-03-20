@@ -11,8 +11,12 @@ export default {
         return axios.post(`${apiPrefix}/movies`, data);
     },
 
-    deleteMovie(noteId) {
-        return axios.delete(`${apiPrefix}/movies/${noteId}`);
+    getMovieInformation(movieId) {
+        return axios.get(`${apiPrefix}/movies/${movieId}`);
+    },
+
+    deleteMovie(movieId) {
+        return axios.delete(`${apiPrefix}/movies/${movieId}`);
     },
 
     searchByName(searchValue) {

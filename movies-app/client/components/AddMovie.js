@@ -9,6 +9,7 @@ class AddMovie extends React.Component {
         this.addMovie = this.addMovie.bind(this);
         this.addActor = this.addActor.bind(this);
         this.deleteActor = this.deleteActor.bind(this);
+        this.hideError = this.hideError.bind(this);
     }
 
     addMovie() {
@@ -18,15 +19,27 @@ class AddMovie extends React.Component {
             format: this.format.value,
             stars: this.props.actorsList
         };
-        api.createMovie(movieObj).then(() =>
-            api.listMovies().then(({ data }) => this.props.getMovies(data))
-        ).catch(err =>
-            console.error(err)
-        );
+        if (this.title.value) {
+            api.createMovie(movieObj).then(() =>
+                api.listMovies().then(({ data }) => this.props.getMovies(data))
+            ).catch(err =>
+                console.error(err)
+            );
+            this.title.value = '';
+            this.year.value = '';
+            this.props.clearActorsArray();
+        } else {
+            this.props.showError();
+        }
+    }
+
+    hideError() {
+        this.props.hideError();
     }
 
     addActor() {
         this.props.addActorToState(this.actor.value);
+        this.actor.value = '';
     }
 
     deleteActor(e) {
@@ -39,12 +52,16 @@ class AddMovie extends React.Component {
                 <div className='inputs-block'>
                     <div className="input-wrapper">
                         <input type="text"
-                               placeholder="Title"
+                               onChange={this.hideError}
+                               style={ this.props.showErrorMessage ?
+                                      {"border": "1px solid red"}:
+                                      {"border": "1px solid #CCC"}}
+                               placeholder="Title *"
                                ref={(input) => { this.title = input; }}
                         />
                     </div>
                     <div className="input-wrapper">
-                        <input type="text"
+                        <input type="number"
                                placeholder="Year"
                                ref={(input) => { this.year = input; }}
                         />
@@ -78,6 +95,11 @@ class AddMovie extends React.Component {
                         }
                     )}
                 </div>
+                <div className="error-block" style={
+                    this.props.showErrorMessage ?
+                        {"display": "block"}: {"display": "none"}}>
+                    Please enter the name of the movie
+                </div>
                 <button className="add-movie-btn" onClick={this.addMovie}>Add movie</button>
             </div>
         );
@@ -88,7 +110,8 @@ export default connect(
     state => ({
         testStore: state.moviesList,
         searchBy: state.searchBy,
-        actorsList: state.actorsList
+        actorsList: state.actorsList,
+        showErrorMessage: state.showErrorMessage
     }),
     dispatch => ({
         getMovies: (movies) => {
@@ -99,6 +122,15 @@ export default connect(
         },
         deleteActorFromState: (index) => {
             dispatch({ type: "DELETE_ACTOR", index});
+        },
+        clearActorsArray: () => {
+            dispatch({ type: "CLEAR_ACTORS_LIST"});
+        },
+        showError: () => {
+            dispatch({ type: "ERROR_MESSAGE_SHOW"});
+        },
+        hideError: () => {
+            dispatch({ type: "ERROR_MESSAGE_HIDE"});
         }
     })
 )(AddMovie);
