@@ -43,6 +43,9 @@ export default connect(
         searchBy: state.searchBy
     }),
     dispatch => ({
+        getMovies: (movies) => {
+            dispatch({ type: "GET_LIST", movies: movies});
+        },
         mapSelectMovie: (selected) => {
             dispatch({ type: "SELECT_MOVIE", selected});
         },

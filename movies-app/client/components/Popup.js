@@ -35,10 +35,16 @@ class Popup extends React.Component {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-
+                    <span className="fas fa-times" onClick={this.closeModal}></span>
                     <h2 ref={subtitle => this.subtitle = subtitle}>{this.props.selectedMovie.title}</h2>
-                    <button onClick={this.closeModal}>close</button>
-                    <div>I am a modal</div>
+                    <ul className="actors-list">
+                        {
+                            this.props.selectedMovie.stars ? this.props.selectedMovie.stars.map((actor, index) =>{
+                                return <li key ={index}>{actor}</li>;
+                                }
+                            ) : ''
+                        }
+                    </ul>
                 </Modal>
             </div>
         );
