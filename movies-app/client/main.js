@@ -13,7 +13,9 @@ import App from './components/App';
 const initialState = {
     searchBy: 'name',
     moviesList: [],
-    actorsList: []
+    actorsList: [],
+    modalIsOpen: false,
+    selectedMovie: {}
 };
 
 function moviesList (state = initialState, action) {
@@ -54,6 +56,26 @@ function moviesList (state = initialState, action) {
                 ...state.actorsList.slice(0, action.index),
                 ...state.actorsList.slice(action.index + 1)
             ]
+        }
+    } else if (action.type === "CLEAR_ACTORS_LIST") {
+        return {
+            ...state,
+            actorsList: []
+        }
+    } else if (action.type === "CLOSE_POPUP") {
+        return {
+            ...state,
+            modalIsOpen: false
+        }
+    } else if (action.type === "OPEN_POPUP") {
+        return {
+            ...state,
+            modalIsOpen: true
+        }
+    } else if (action.type === "SELECT_MOVIE") {
+        return {
+            ...state,
+            selectedMovie: action.selected
         }
     }
     return state;

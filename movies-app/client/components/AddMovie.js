@@ -23,10 +23,14 @@ class AddMovie extends React.Component {
         ).catch(err =>
             console.error(err)
         );
+        this.title.value = '';
+        this.year.value = '';
+        this.props.clearActorsArray();
     }
 
     addActor() {
         this.props.addActorToState(this.actor.value);
+        this.actor.value = '';
     }
 
     deleteActor(e) {
@@ -99,6 +103,9 @@ export default connect(
         },
         deleteActorFromState: (index) => {
             dispatch({ type: "DELETE_ACTOR", index});
+        },
+        clearActorsArray: () => {
+            dispatch({ type: "CLEAR_ACTORS_LIST"});
         }
     })
 )(AddMovie);
