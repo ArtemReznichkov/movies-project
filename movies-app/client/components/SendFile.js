@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import axios, { post } from 'axios';
 
 import { apiPrefix } from '../../etc/config.json';
 import api from "../api/api";
@@ -10,14 +9,21 @@ class SendFile extends React.Component {
         super(props);
         this.sendFile = this.sendFile.bind(this);
         this.onChange = this.onChange.bind(this);
-        // this.fileUpload = this.fileUpload.bind(this);
     }
+
     sendFile(){
-        setTimeout(() => {
-            api.listMovies().then(({ data }) => this.props.getMovies(data))
-        }, 300);
-        api.fileUpload(this.props.selectedFile).then(() => console.log("ok"));
+        console.log(this.props.selectedFile.type);
+        if (this.props.selectedFile.type !== "text/plain") {
+            this.props.fileErrorShow();
+        } else {
+            this.props.fileErrorHide();
+            setTimeout(() => {
+                api.listMovies().then(({ data }) => this.props.getMovies(data))
+            }, 300);
+            api.fileUpload(this.props.selectedFile).then(() => console.log("ok"));
+        }
     }
+
     onChange(e) {
         this.props.selectFile(e.target.files[0]);
     }
@@ -25,8 +31,14 @@ class SendFile extends React.Component {
     render() {
         return (
             <div className="file-upload">
-                <input type="file" onChange={this.onChange} />
+                <input type="file" id="file-input" onChange={this.onChange} />
+                <label htmlFor="file-input"><span className="fas fa-cloud-upload-alt"></span></label>
                 <button className="send-file" onClick={this.sendFile}>send file</button>
+                <div className="error-block" style={
+                    this.props.showFileError ?
+                        {"display": "block"}: {"display": "none"}}>
+                    Please insert the .txt file in the correct format
+                </div>
             </div>
         )
     }
@@ -35,7 +47,8 @@ class SendFile extends React.Component {
 
 export default connect(
     state => ({
-        selectedFile: state.selectedFile
+        selectedFile: state.selectedFile,
+        showFileError: state.showFileError
     }),
     dispatch => ({
         getMovies: (movies) => {
@@ -43,6 +56,12 @@ export default connect(
         },
         selectFile: (selected) => {
             dispatch({ type: "SELECT_FILE", selected})
+        },
+        fileErrorShow: () => {
+            dispatch({ type: "FILE_ERROR_SHOW"})
+        },
+        fileErrorHide: () => {
+            dispatch({ type: "FILE_ERROR_HIDE"})
         }
     })
 )(SendFile);

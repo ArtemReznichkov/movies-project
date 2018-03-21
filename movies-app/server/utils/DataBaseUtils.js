@@ -41,7 +41,7 @@ export function searchMovieByStar(name) {
 }
 
 export function importFile(array) {
-    for(var i = 0; i < array.length; i++) {
+    for( var i = 0; i < array.length; i++ ) {
         const movie = new Movie({
             title: array[i].title,
             releaseYear: array[i].releaseYear,
@@ -50,5 +50,4 @@ export function importFile(array) {
         });
         movie.save();
     };
-    return {status: "file uploaded"}
 }

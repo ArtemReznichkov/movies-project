@@ -7,6 +7,7 @@ import modalIsOpen from './modalIsOpen';
 import selectedMovie from './selectedMovie';
 import showErrorMessage from './showErrorMessage';
 import selectedFile from './selectedFile';
+import showFileError from './showFileError';
 
 export default combineReducers({
     searchBy,
@@ -15,5 +16,6 @@ export default combineReducers({
     modalIsOpen,
     selectedMovie,
     showErrorMessage,
-    selectedFile
+    selectedFile,
+    showFileError
 });

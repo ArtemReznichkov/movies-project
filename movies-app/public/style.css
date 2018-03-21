@@ -234,3 +234,30 @@ select{
     padding-left: 10px;
     color: #fe3f00;
 }
+#file-input {
+    display: none;
+}
+.file-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+.file-upload .error-block {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.file-upload label span {
+    font-size: 32px;
+    color: #585858;
+    cursor: pointer;
+}
+.send-file {
+    display: inline-block;
+    display: inline-block;
+    width: 100px;
+    font-size: 12px;
+    margin-left: 20px;
+}

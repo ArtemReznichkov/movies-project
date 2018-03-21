@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 
-import api from '../api/api';
 
 const customStyles = {
     content : {
