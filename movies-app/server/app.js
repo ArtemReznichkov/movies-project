@@ -54,7 +54,7 @@ app.post('/file_import', upload.single('file'), (req, res) => {
         if (err) throw console.log(err);
 
         var array = data.split("\n\n");
-        var jsonObj = [];
+        var jsonArray = [];
 
         for(var i = 0; i < array.length; i++) {
             var objToPush = {};
@@ -65,8 +65,9 @@ app.post('/file_import', upload.single('file'), (req, res) => {
             objToPush.releaseYear = arrEl[1].split(': ')[1];
             objToPush.format = arrEl[2].split(': ')[1];
             objToPush.stars = arrEl[3].split(': ')[1].split(', ');
-            db.createMovie(objToPush).then(data => res.send(data));
+            jsonArray.push(objToPush);
         }
+        db.importFile(jsonArray);
     });
 });
 

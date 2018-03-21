@@ -12,7 +12,7 @@ class SendFile extends React.Component {
         this.fileUpload = this.fileUpload.bind(this);
     }
     sendFile(){
-        this.fileUpload({ file: this.props.selectedFile }).then((data) => console.log(data)
+        this.fileUpload(this.props.selectedFile).then((data) => console.log(data)
         ).catch(err =>
             console.error(err)
         );

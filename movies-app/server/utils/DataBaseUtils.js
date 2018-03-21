@@ -39,3 +39,15 @@ export function searchMovieByName(name) {
 export function searchMovieByStar(name) {
     return Movie.find({stars: {"$regex": name, "$options": "i"}}).sort({ title: 'asc' });
 }
+
+export function importFile(array) {
+    for(var i = 0; i < array.length; i++) {
+        const movie = new Movie({
+            title: array[i].title,
+            releaseYear: array[i].releaseYear,
+            format: array[i].format,
+            stars: array[i].stars
+        });
+        movie.save();
+    }
+}
