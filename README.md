@@ -6,7 +6,7 @@ $ cd movies-app
 $ npm install
 ```
 
-## run MongoDB server
+## Run MongoDB server
 
 ## Start api server
 
