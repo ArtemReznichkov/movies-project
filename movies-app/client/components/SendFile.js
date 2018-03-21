@@ -11,8 +11,7 @@ class SendFile extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
-    sendFile(){
-        console.log(this.props.selectedFile.type);
+    sendFile() {
         if (this.props.selectedFile.type !== "text/plain") {
             this.props.fileErrorShow();
         } else {
