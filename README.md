@@ -15,6 +15,7 @@ $ cd movies-app
 $ babel-node server/app.js
 ```
 api run on http://localhost:8080
+setup: movies-app/etc/config.json
 
 ## Start development server
 
