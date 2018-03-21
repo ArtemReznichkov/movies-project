@@ -14,6 +14,7 @@ db.setUpConnection();
 
 const app = express();
 
+app.use( bodyParser.urlencoded() );
 app.use( bodyParser.json() );
 
 app.use( cors({ origin: '*' }) );
@@ -69,6 +70,7 @@ app.post('/file_import', upload.single('file'), (req, res) => {
         }
         db.importFile(jsonArray);
     });
+    return {status: "file uploaded"};
 });
 
 

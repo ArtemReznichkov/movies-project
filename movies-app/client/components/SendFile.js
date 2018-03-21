@@ -3,33 +3,23 @@ import { connect } from 'react-redux';
 import axios, { post } from 'axios';
 
 import { apiPrefix } from '../../etc/config.json';
+import api from "../api/api";
 
 class SendFile extends React.Component {
     constructor(props) {
         super(props);
         this.sendFile = this.sendFile.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.fileUpload = this.fileUpload.bind(this);
+        // this.fileUpload = this.fileUpload.bind(this);
     }
     sendFile(){
-        this.fileUpload(this.props.selectedFile).then((data) => console.log(data)
-        ).catch(err =>
-            console.error(err)
-        );
+        setTimeout(() => {
+            api.listMovies().then(({ data }) => this.props.getMovies(data))
+        }, 300);
+        api.fileUpload(this.props.selectedFile).then(() => console.log("ok"));
     }
     onChange(e) {
         this.props.selectFile(e.target.files[0]);
-    }
-    fileUpload(file){
-        const url = `${apiPrefix}/file_import`;
-        const formData = new FormData();
-        formData.append('file',file);
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        };
-        return  post(url, formData,config)
     }
 
     render() {
@@ -48,6 +38,9 @@ export default connect(
         selectedFile: state.selectedFile
     }),
     dispatch => ({
+        getMovies: (movies) => {
+            dispatch({ type: "GET_LIST", movies});
+        },
         selectFile: (selected) => {
             dispatch({ type: "SELECT_FILE", selected})
         }

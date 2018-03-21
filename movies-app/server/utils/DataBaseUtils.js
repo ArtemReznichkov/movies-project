@@ -49,5 +49,6 @@ export function importFile(array) {
             stars: array[i].stars
         });
         movie.save();
-    }
+    };
+    return {status: "file uploaded"}
 }
