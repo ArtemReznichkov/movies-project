@@ -7,8 +7,6 @@ const multer  = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const fs = require('fs');
 
-var Parser = require("simple-text-parser");
-var parser = new Parser();
 
 import * as db from './utils/DataBaseUtils';
 
@@ -50,14 +48,11 @@ app.post('/getMovies_byStar', (req, res) => {
     db.searchMovieByStar(req.body.star).then(data => res.send(data));
 });
 
-
-
-
-
 //import .txt file
 app.post('/file_import', upload.single('file'), (req, res) => {
     fs.readFile(req.file.path, "utf8", function (err, data) {
         if (err) throw console.log(err);
+
         var array = data.split("\n\n");
         var jsonObj = [];
 
