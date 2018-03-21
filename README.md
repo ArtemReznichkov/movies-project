@@ -14,6 +14,7 @@ $ npm install
 $ cd movies-app
 $ babel-node server/app.js
 ```
+api run on http://localhost:8080
 
 ## Start development server
 
@@ -21,3 +22,4 @@ $ babel-node server/app.js
 $ cd movies-app
 $ npm run webpack-devserver
 ```
+app run on http://localhost:8090
