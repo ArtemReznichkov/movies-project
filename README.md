@@ -15,7 +15,7 @@ $ cd movies-app
 $ babel-node server/app.js
 ```
 
-## Start api server
+## Start development server
 
 ```bash
 $ cd movies-app
