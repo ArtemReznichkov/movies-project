@@ -200,3 +200,37 @@ select{
     cursor: pointer;
 }
 
+.ReactModal__Content {
+    width: 100%;
+    max-width: 400px;
+}
+.popup-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+.close-popup:hover {
+    color: #fe3f00;
+}
+.stars-title {
+    font-weight: bold;
+    font-size: 17px;
+}
+.star {
+    margin: 0 5px;
+    display: inline-block;
+    font-size: 15px;
+}
+.format {
+    margin-bottom: 15px;
+}
+.error-block {
+    padding-left: 10px;
+    color: #fe3f00;
+}

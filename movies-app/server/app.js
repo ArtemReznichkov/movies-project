@@ -2,7 +2,13 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import { serverPort } from '../etc/config.json'
+import { serverPort } from '../etc/config.json';
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
+const fs = require('fs');
+
+var Parser = require("simple-text-parser");
+var parser = new Parser();
 
 import * as db from './utils/DataBaseUtils';
 
@@ -43,6 +49,37 @@ app.post('/getMovies_byName', (req, res) => {
 app.post('/getMovies_byStar', (req, res) => {
     db.searchMovieByStar(req.body.star).then(data => res.send(data));
 });
+
+
+
+
+
+//import .txt file
+app.post('/file_import', upload.single('file'), (req, res) => {
+    fs.readFile(req.file.path, "utf8", function (err, data) {
+        if (err) throw console.log(err);
+        var array = data.split("\n\n");
+        var jsonObj = [];
+
+        for(var i = 0; i < array.length; i++) {
+            var objToPush = {};
+            var arrEl = array[i].split("\n");
+
+            if(!array[i][0]) break;
+            objToPush.title = arrEl[0].split(': ')[1];
+            objToPush.releaseYear = arrEl[1].split(': ')[1];
+            objToPush.format = arrEl[2].split(': ')[1];
+            objToPush.stars = arrEl[3].split(': ')[1].split(', ');
+            db.createMovie(objToPush).then(data => res.send(data));
+        }
+    });
+});
+
+
+
+
+
+
 
 const server = app.listen(serverPort, () => {
     console.log(`Server is up and running on port ${serverPort}`);

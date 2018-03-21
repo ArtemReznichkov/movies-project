@@ -6,12 +6,12 @@ import api from '../api/api';
 
 const customStyles = {
     content : {
-        top                   : '50%',
+        top                   : '40%',
         left                  : '50%',
         right                 : 'auto',
         bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)'
+        transform             : 'translate(-50%, -50%)',
+        padding               : '0'
     }
 };
 
@@ -35,16 +35,27 @@ class Popup extends React.Component {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <span className="fas fa-times" onClick={this.closeModal}></span>
-                    <h2 ref={subtitle => this.subtitle = subtitle}>{this.props.selectedMovie.title}</h2>
-                    <ul className="actors-list">
-                        {
-                            this.props.selectedMovie.stars ? this.props.selectedMovie.stars.map((actor, index) =>{
-                                return <li key ={index}>{actor}</li>;
-                                }
-                            ) : ''
-                        }
-                    </ul>
+                    <div className="popup-wrapper">
+                        <span className="fas fa-times close-popup" onClick={this.closeModal}></span>
+                        <h2 ref={subtitle => this.subtitle = subtitle}>{this.props.selectedMovie.title}</h2>
+                        <div className="format">
+                            <span className="stars-title">Release Year:</span>
+                            <span className="star">{this.props.selectedMovie.releaseYear}</span>
+                        </div>
+                        <div className="format">
+                            <span className="stars-title">Format:</span>
+                            <span className="star">{this.props.selectedMovie.format}</span>
+                        </div>
+                        <div className="format">
+                            <span className="stars-title">Stars:</span>
+                            {
+                                this.props.selectedMovie.stars ? this.props.selectedMovie.stars.map((actor, index) =>{
+                                    return <span className="star" key ={index}>{actor}</span>;
+                                    }
+                                ) : ''
+                            }
+                        </div>
+                    </div>
                 </Modal>
             </div>
         );
