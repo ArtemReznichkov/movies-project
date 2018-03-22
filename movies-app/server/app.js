@@ -50,15 +50,15 @@ app.post('/getMovies_byStar', (req, res) => {
 
 //import .txt file
 app.post('/file_import', upload.single('file'), (req, res) => {
-    fs.readFile(req.file.path, "utf8", function (err, data) {
+    fs.readFile(req.file.path, "utf8", (err, data) => {
         if (err) throw console.log(err);
 
-        var array = data.split("\n\n");
-        var jsonArray = [];
+        let array = data.split("\n\n");
+        let jsonArray = [];
 
-        for(var i = 0; i < array.length; i++) {
-            var objToPush = {};
-            var arrEl = array[i].split("\n");
+        for(let i = 0; i < array.length; i++) {
+            let objToPush = {};
+            let arrEl = array[i].split("\n");
 
             if(!array[i][0]) break;
             objToPush.title = arrEl[0].split(': ')[1];
