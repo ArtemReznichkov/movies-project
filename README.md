@@ -25,6 +25,4 @@ $ npm run webpack-devserver
 ```
 #### app run on http://localhost:8090
 
-<img src="http://prntscr.com/iuod1v" width="350"/>
-
-![alt screenshot](http://prntscr.com/iuod1v)
+![GitHub Logo](/screenshots/Screenshot.png)
