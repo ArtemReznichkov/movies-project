@@ -25,4 +25,4 @@ $ npm run webpack-devserver
 ```
 #### app run on http://localhost:8090
 
-![alt text](http://prntscr.com/iuod1v)
+![alt screenshot](http://prntscr.com/iuod1v)
